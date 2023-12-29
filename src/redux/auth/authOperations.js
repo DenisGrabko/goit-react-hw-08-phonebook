@@ -22,7 +22,7 @@ export const registerThunk = createAsyncThunk(
       setToken(data.token);
       return data;
     } catch (error) {
-      Notify.failure(`We're sorry, something went wrong`);
+      Notify.failure(`Something went wrong`);
       return thunkApi.rejectWithValue(error.message);
     }
   }
@@ -36,7 +36,7 @@ export const loginThunk = createAsyncThunk(
       setToken(data.token);
       return data;
     } catch (error) {
-      Notify.failure(`You entered an incorrect login or password`);
+      Notify.failure(`Incorrect login or password`);
       return thunkApi.rejectWithValue(error.message);
     }
   }
