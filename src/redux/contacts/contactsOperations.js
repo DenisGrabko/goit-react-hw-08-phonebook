@@ -19,10 +19,10 @@ export const addContactsThunk = createAsyncThunk(
   async ({ name, number }, thunkApi) => {
     try {
       const { data } = await instance.post('/contacts', { name, number });
-      Notify.success(`Contact ${name} added successfully`);
+      Notify.success(`${name} add`);
       return data;
     } catch (error) {
-      Notify.failure("Sorry, something's wrong");
+      Notify.failure('Something went wrong');
       return thunkApi.rejectWithValue(error.message);
     }
   }
@@ -33,7 +33,7 @@ export const deleteContactsThunk = createAsyncThunk(
   async (contactId, thunkApi) => {
     try {
       const { data } = await instance.delete(`/contacts/${contactId}`);
-      Notify.warning(`Contact ${data.name} delete successfully`);
+      Notify.warning(`${data.name} delete successfully`);
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
