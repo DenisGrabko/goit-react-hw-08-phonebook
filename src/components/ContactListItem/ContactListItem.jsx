@@ -1,13 +1,20 @@
 import { useDispatch } from 'react-redux';
-import { deleteContactsThunk } from '../../redux/operation';
+import { deleteContactsThunk } from '../../redux/contacts/contactsOperations';
+import { getRandomHexColor } from './GetRandomHexColor';
 
-const ContactListItem = ({ id, name, phone }) => {
+const ContactListItem = ({ id, name, number }) => {
   const dispatch = useDispatch();
 
   return (
     <div>
       <li key={id}>
-        {name}: {phone}
+        <div>
+          <span style={{color: getRandomHexColor()}}>
+            {name.slice(0, 1).toUpperCase()}
+          </span>
+        </div>
+        <b>{name} : </b>
+        {number.slice(0, 13)}
       </li>
       <button
         type="button"

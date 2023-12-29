@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { changeFilter } from '../../redux/filterSlice';
-import { selectFilter } from '../../redux/selectors';
+import { selectFilter } from '../../redux/contacts/contactsSelectors';
+import { changeFilter } from '../../redux/contacts/filterSlice';
 
-export const Filter = () => {
+const Filter = () => {
   const dispatch = useDispatch();
-  const filter = useSelector(selectFilter);  
+  const filterQuery = useSelector(selectFilter); 
 
   const onChangeFilter = ({ currentTarget: { value } }) => {
     const newValue = value.toLowerCase();
@@ -13,12 +13,13 @@ export const Filter = () => {
   return (
     <>
       <label>
-        Find contacts by name
+        <p>Find contact</p>
         <input
           type="text"
           name="filter"
-          value={filter}
+          value={filterQuery}
           onChange={onChangeFilter}
+          placeholder="Enter your contact"
         />
       </label>
     </>
