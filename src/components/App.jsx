@@ -22,7 +22,7 @@ export const App = () => {
   }, [dispatch]);
 
   return isRefreshing ? (
-    <p><Loader/></p>
+    <Loader/>
   ) : (
     <Layout>
       <Suspense fallback={<Loader />}>

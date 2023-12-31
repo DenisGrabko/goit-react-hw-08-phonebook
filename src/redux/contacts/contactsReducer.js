@@ -17,7 +17,6 @@ const STATUS = {
   REJECTED: 'rejected',
 };
 
-// Визначення функції getActions, яка повертає умову isAnyOf для зазначеного типу дії
 const getActions = type =>
   isAnyOf(
     addContactsThunk[type],
@@ -33,7 +32,11 @@ export const contactsSlice = createSlice({
   extraReducers: builder => {
     const { PENDING, REJECTED } = STATUS;
     builder
-      .addCase(getContactsThunk.fulfilled, handleFulfilledGet)
+      .addCase(getContactsThunk.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = null;
+        state.contactItems = [...payload, ...state.contactItems];
+      })
       .addCase(addContactsThunk.fulfilled, handleFulfilledAdd)
       .addCase(deleteContactsThunk.fulfilled, handleFulfilledDelete)
       .addMatcher(getActions(PENDING), handlePending)
@@ -41,5 +44,4 @@ export const contactsSlice = createSlice({
   },
 });
 
-// Редюсер слайсу (підключаємо в store)
 export const contactsReducer = contactsSlice.reducer;

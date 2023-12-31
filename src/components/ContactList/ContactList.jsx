@@ -1,4 +1,4 @@
-import ContactListItem from '../../components/ContactList/ContactList';
+import { ContactListItem } from '../../components/ContactListItem/ContactListItem';
 import { useSelector } from 'react-redux';
 import {
   selectIsLoading,
