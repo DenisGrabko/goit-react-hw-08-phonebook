@@ -21,25 +21,24 @@ const ContactsPage = () => {
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
 
-   useEffect(() => {
-   dispatch(getContactsThunk());
-   }, [dispatch]);
+  useEffect(() => {
+    dispatch(getContactsThunk());
+  }, [dispatch]);
 
-  //const showContacts = Array.isArray(contacts) && contacts.length > 0;
+  const showContacts = Array.isArray(contacts) && contacts.length > 0;
 
   return (
     <>
       <Container>
         <Section title="Phonebook contacts">
           <ContactsForm />
-          
-          <Filter />
-          {/* {contacts.length > 0 ? (
+          {contacts.length > 0 ? (
+            <Filter />
           ) : (
             <Notification message="Please add your contact!" />
-          )} */}
+          )}
           {error !== null && <p>{error}</p>}
-          {<ContactList />}    {/*   showContacts &&  */}
+          {showContacts && <ContactList />}
           {isLoading && <Loader />}          
         </Section>
       </Container>
