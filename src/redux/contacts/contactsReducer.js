@@ -32,11 +32,7 @@ export const contactsSlice = createSlice({
   extraReducers: builder => {
     const { PENDING, REJECTED } = STATUS;
     builder
-      .addCase(getContactsThunk.fulfilled, (state, { payload }) => {
-        state.isLoading = false;
-        state.error = null;
-        state.contactItems = [...payload, ...state.contactItems];
-      })
+      .addCase(getContactsThunk.fulfilled, handleFulfilledGet)
       .addCase(addContactsThunk.fulfilled, handleFulfilledAdd)
       .addCase(deleteContactsThunk.fulfilled, handleFulfilledDelete)
       .addMatcher(getActions(PENDING), handlePending)
